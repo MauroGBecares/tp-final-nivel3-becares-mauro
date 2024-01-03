@@ -1,0 +1,30 @@
+﻿body {
+    margin: 0;
+    position: relative;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    background-image: url(../Images/Background/fondo-tecnologia.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+#imgAvatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+    border: 1px solid black;
+}
+
+footer {
+    height: 100px;
+    background-color: black;
+    padding: 1em 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
