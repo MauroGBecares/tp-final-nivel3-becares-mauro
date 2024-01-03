@@ -37,7 +37,28 @@ namespace web_articulos
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            UsersNegocio negocio = new UsersNegocio();
+            Users user = new Users();
+            try
+            {
+                if (txtImagen.PostedFile.FileName != "")
+                {
+                    string ruta = Server.MapPath("./Images/Perfiles/");
+                    txtImagen.PostedFile.SaveAs($"{ruta}perfil-foto-{user.Id}.jpg");
+                    user.UrlImagenPerfil = $"perfil-foto-{user.Id}.jpg";
+                }
+                user.Nombre = txtNombre.Text;
+                user.Apellido = txtApellido.Text;
 
+                negocio.actualizarUsuario(user);
+
+                Image img = (Image)Master.FindControl("imgAvatar");
+                img.ImageUrl = $"~/Images/Perfiles/{user.UrlImagenPerfil}";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

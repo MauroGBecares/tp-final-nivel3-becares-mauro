@@ -16,12 +16,12 @@ namespace web_articulos
             imgAvatar.ImageUrl = "https://simg.nicepng.com/png/small/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png";
             if (!(Page is Registro || Page is Login || Page is Default || Page is Detalle))
             {
-                if (Seguridad.sessionActiva(Session["usuario"]))
+                if (!Seguridad.sessionActiva(Session["usuario"]))
                     Response.Redirect("Login.aspx", false);
                 if (Session["usuario"] != null)
                 {
                     Users user = (Users)Session["usuario"];
-                    if (string.IsNullOrEmpty(user.UrlImagenPerfil))
+                    if (!string.IsNullOrEmpty(user.UrlImagenPerfil))
                         imgAvatar.ImageUrl = $"~/Images/Perfiles/{user.UrlImagenPerfil}";
                 }
             }
