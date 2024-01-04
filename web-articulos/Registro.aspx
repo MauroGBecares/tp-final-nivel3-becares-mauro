@@ -19,7 +19,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
-                    <asp:TextBox ID="txtPass" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox TextMode="Password" ID="txtPass" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
                 <div class="mb-3">
                     <asp:Button ID="btnRegistrar" runat="server" OnClick="btnRegistrar_Click" Text="Registrarse" CssClass="btn btn-primary" />

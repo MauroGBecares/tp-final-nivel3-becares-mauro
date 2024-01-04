@@ -17,6 +17,9 @@
                         <p class="card-text">Categoria: <%: detalleArticulo.Categoria.Descripcion %></p>
                         <p class="card-text"><b>Precio: $ <%: detalleArticulo.Precio %></b></p>
                     </div>
+                    <div class="d-flex justify-content-center py-1">
+                        <a href="Default.aspx" class="btn btn-primary w-25">Regresar</a>
+                    </div>
                 </div>
             </div>
             <div class="col"></div>

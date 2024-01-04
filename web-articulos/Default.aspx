@@ -16,7 +16,9 @@
                                 <p class="card-text"><%# Eval("Descripcion") %></p>
                                 <p><b>$ <%# Eval("Precio") %></b></p>
                             </div>
-                            <asp:Button ID="btnDetalle" runat="server" Text="Ver Articulo" OnClick="btnDetalle_Click" CommandArgument='<%# Eval("Id") %>' CommandName="ArticuloId" CssClass="btn btn-primary" />
+                            <div class="d-flex justify-content-center py-2">
+                                <asp:Button ID="btnDetalle" runat="server" Text="Ver Articulo" OnClick="btnDetalle_Click" CommandArgument='<%# Eval("Id") %>' CommandName="ArticuloId" CssClass="btn btn-primary" />
+                            </div>
                         </div>
                     </div>
                 </ItemTemplate>

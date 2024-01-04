@@ -65,7 +65,7 @@
                         { %>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <asp:TextBox placeholder="Buscar..." ID="txtBuscar" CssClass="form-control me-2" AutoPostBack="true" runat="server" OnTextChanged="txtBuscar_TextChanged"></asp:TextBox>
                     </div>
                     <%} %>
                 </div>

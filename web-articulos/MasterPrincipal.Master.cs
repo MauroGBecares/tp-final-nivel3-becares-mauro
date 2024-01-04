@@ -32,5 +32,9 @@ namespace web_articulos
             Session.Clear();
             Response.Redirect("Default.aspx");
         }
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

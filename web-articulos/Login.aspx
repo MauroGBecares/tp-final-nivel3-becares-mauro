@@ -14,7 +14,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
-                    <asp:TextBox ID="txtPass" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox TextMode="Password" ID="txtPass" CssClass="form-control" runat="server"></asp:TextBox>
                 </div>
                 <div class="mb-3">
                     <asp:Button ID="btnLogin" runat="server" Text="Ingresar" OnClick="btnLogin_Click" CssClass="btn btn-primary" />

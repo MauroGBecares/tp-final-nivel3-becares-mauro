@@ -38,7 +38,7 @@ namespace web_articulos
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             UsersNegocio negocio = new UsersNegocio();
-            Users user = new Users();
+            Users user = (Users)Session["usuario"];
             try
             {
                 if (txtImagen.PostedFile.FileName != "")
@@ -53,7 +53,8 @@ namespace web_articulos
                 negocio.actualizarUsuario(user);
 
                 Image img = (Image)Master.FindControl("imgAvatar");
-                img.ImageUrl = $"~/Images/Perfiles/{user.UrlImagenPerfil}";
+                if (!string.IsNullOrEmpty(user.UrlImagenPerfil))
+                    img.ImageUrl = $"~/Images/Perfiles/{user.UrlImagenPerfil}";
             }
             catch (Exception ex)
             {

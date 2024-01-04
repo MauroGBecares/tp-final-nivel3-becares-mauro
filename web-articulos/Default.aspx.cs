@@ -11,9 +11,13 @@ namespace web_articulos
 {
     public partial class Default : System.Web.UI.Page
     {
-        public List<Articulos> ListaArticulos { get; set; }
+        private TextBox txtBuscar;
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtBuscar = (TextBox)Master.FindControl("txtBuscar");
+            if (txtBuscar != null)
+                txtBuscar.TextChanged += new EventHandler(txtBuscar_TextChanged);
+
             ArticulosNegocio negocio = new ArticulosNegocio();
             Session.Add("listaArticulos", negocio.listar());
             if (!IsPostBack)
@@ -27,6 +31,13 @@ namespace web_articulos
         {
             string id = ((Button)sender).CommandArgument;
             Response.Redirect($"Detalle.aspx?id={id}");
+        }
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulos> lista = (List<Articulos>)Session["listaArticulos"];
+            List<Articulos> listaFiltro = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            repeaterArticulos.DataSource = listaFiltro;
+            repeaterArticulos.DataBind();
         }
     }
 }

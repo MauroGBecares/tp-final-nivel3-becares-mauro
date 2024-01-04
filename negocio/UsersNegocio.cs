@@ -71,7 +71,7 @@ namespace negocio
                 datos.setearConsulta("Update USERS set nombre = @nombre, apellido = @apellido, urlImagenPerfil = @img Where Id = @id");
                 datos.setearParametros("@nombre", user.Nombre);
                 datos.setearParametros("@apellido", user.Apellido);
-                datos.setearParametros("@urlImagenPerfil", (object)user.UrlImagenPerfil ?? DBNull.Value);
+                datos.setearParametros("@img", (object)user.UrlImagenPerfil ?? DBNull.Value);
                 datos.setearParametros("@id", user.Id);
                 datos.ejecutarAccion();
             }
