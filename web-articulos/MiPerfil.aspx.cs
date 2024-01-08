@@ -39,6 +39,7 @@ namespace web_articulos
         {
             UsersNegocio negocio = new UsersNegocio();
             Users user = (Users)Session["usuario"];
+
             try
             {
                 if (txtImagen.PostedFile.FileName != "")
@@ -58,7 +59,8 @@ namespace web_articulos
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx");
             }
         }
     }

@@ -10,6 +10,7 @@
     <link href="Content/Common.css" rel="stylesheet" />
     <script src="Scripts/bootstrap.bundle.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="Scripts/Common.js" defer></script>
     <title>ElectroShop</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

@@ -14,7 +14,8 @@ namespace web_articulos
         protected void Page_Load(object sender, EventArgs e)
         {
             imgAvatar.ImageUrl = "https://simg.nicepng.com/png/small/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png";
-            if (!(Page is Registro || Page is Login || Page is Default || Page is Detalle))
+            // LUEGO SACAR PAGE IS ADMIN
+            if (!(Page is Registro || Page is Login || Page is Default || Page is Detalle || Page is Admin))
             {
                 if (!Seguridad.sessionActiva(Session["usuario"]))
                     Response.Redirect("Login.aspx", false);
