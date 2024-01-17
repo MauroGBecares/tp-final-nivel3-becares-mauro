@@ -85,8 +85,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Common.css" />
-    <Content Include="Content\Default.css" />
     <Content Include="Content\Master.css" />
+    <Content Include="Content\MaxContentHeight.css" />
     <Content Include="Default.aspx" />
     <Content Include="Detalle.aspx" />
     <Content Include="Error.aspx" />

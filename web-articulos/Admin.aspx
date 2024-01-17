@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="contenido py-3">
         <div class="container">
             <div class="row">
@@ -21,65 +21,71 @@
                     </div>
                 </div>
             </div>
-            <%if (chkFiltroAvanzado.Checked)
-                { %>
-            <div class="row">
-                <div class="col-4">
-                    <div class="mb-3 d-flex">
-                        <label for="ddlCampo" class="my-1 mx-2">Campo</label>
-                        <asp:DropDownList ID="ddlCampo" CssClass="form-select" runat="server">
-                            <asp:ListItem Text="Código" />
-                            <asp:ListItem Text="Nombre" />
-                            <asp:ListItem Text="Descripción" />
-                            <asp:ListItem Text="Categoría" />
-                            <asp:ListItem Text="Marca" />
-                            <asp:ListItem Text="Precio" />
-                        </asp:DropDownList>
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+                    <%if (chkFiltroAvanzado.Checked)
+                        { %>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="mb-3 d-flex">
+                                <label for="ddlCampo" class="my-1 mx-2">Campo</label>
+                                <asp:DropDownList ID="ddlCampo" CssClass="form-select" runat="server" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" AutoPostBack="true">
+                                    <asp:ListItem Text="Código" />
+                                    <asp:ListItem Text="Nombre" />
+                                    <asp:ListItem Text="Descripción" />
+                                    <asp:ListItem Text="Categoría" />
+                                    <asp:ListItem Text="Marca" />
+                                    <asp:ListItem Text="Precio" />
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3 d-flex">
+                                <label for="ddlCriterio" class="my-1 mx-2">Criterio</label>
+                                <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-select"></asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3 d-flex">
+                                <label for="txtFiltroAvanzado" class="my-1 mx-2">Filtro</label>
+                                <asp:TextBox ID="txtFiltroAvanzado" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3 d-flex">
+                                <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" OnClick="btnBuscarAvanzado_Click" CssClass="btn btn-outline-primary" />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-4">
-                    <div class="mb-3 d-flex">
-                        <label for="txtFiltroAvanzado" class="my-1 mx-2">Filtro</label>
-                        <asp:TextBox ID="txtFiltroAvanzado" CssClass="form-control" runat="server"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="mb-3 d-flex">
-                        <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" OnClick="btnBuscarAvanzado_Click" CssClass="btn btn-outline-primary" />
-                    </div>
-                </div>
-            </div>
-            <%} %>
-            <div class="row">
-                <div class="col-12">
-                    <asp:GridView ID="dgvArticulos" CssClass="table table-striped" AutoGenerateColumns="false" runat="server"
-                        OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging"
-                        AllowPaging="True" PageSize="5" DataKeyNames="Id">
-                        <Columns>
-                            <asp:BoundField HeaderText="Código" DataField="Codigo" />
-                            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                            <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
-                            <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
-                            <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
-                            <asp:BoundField HeaderText="Precio" DataField="Precio" />
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:LinkButton runat="server" CommandName="Select">
+                    <%} %>
+                    <div class="row">
+                        <div class="col-12">
+                            <asp:GridView ID="dgvArticulos" CssClass="table table-striped" AutoGenerateColumns="false" runat="server"
+                                OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging"
+                                AllowPaging="True" PageSize="5" DataKeyNames="Id">
+                                <Columns>
+                                    <asp:BoundField HeaderText="Código" DataField="Codigo" />
+                                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
+                                    <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
+                                    <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
+                                    <asp:BoundField HeaderText="Precio" DataField="Precio" />
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" CommandName="Select">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                    </asp:LinkButton>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </div>
-            </div>
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <div class="row">
                 <div class="col-2">
                     <a href="FormularioArticulo.aspx" class="btn btn-primary">Agregar</a>
-                </div>
-                <div class="col"></div>
-                <div class="col-2">
-                    <a href="ASD" class="btn btn-danger">Seleccionar para borrar</a>
                 </div>
             </div>
         </div>

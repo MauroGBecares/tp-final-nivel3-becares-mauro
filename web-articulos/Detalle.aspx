@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPrincipal.Master" AutoEventWireup="true" CodeBehind="Detalle.aspx.cs" Inherits="web_articulos.Detalle" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="Content/Default.css" rel="stylesheet" />
+    <link href="Content/MaxContentHeight.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="contenido">
@@ -17,8 +17,9 @@
                         <p class="card-text">Categoria: <%: detalleArticulo.Categoria.Descripcion %></p>
                         <p class="card-text"><b>Precio: $ <%: detalleArticulo.Precio %></b></p>
                     </div>
-                    <div class="d-flex justify-content-center py-1">
-                        <a href="Default.aspx" class="btn btn-primary w-25">Regresar</a>
+                    <div class="d-flex justify-content-center py-1 gap-2">
+                        <a href="Default.aspx" class="btn btn-primary">Regresar</a>
+                        <asp:Button ID="btnFavoritos" runat="server" Text="Agregar a Favoritos" CssClass="btn btn-outline-primary" />
                     </div>
                 </div>
             </div>

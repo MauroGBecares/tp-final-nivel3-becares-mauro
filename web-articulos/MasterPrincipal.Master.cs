@@ -14,17 +14,19 @@ namespace web_articulos
         protected void Page_Load(object sender, EventArgs e)
         {
             imgAvatar.ImageUrl = "https://simg.nicepng.com/png/small/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png";
-            // LUEGO SACAR PAGE IS ADMIN
-            if (!(Page is Registro || Page is Login || Page is Default || Page is Detalle || Page is Admin))
+            if (!(Page is Registro || Page is Login || Page is Default || Page is Detalle))
             {
                 if (!Seguridad.sessionActiva(Session["usuario"]))
                     Response.Redirect("Login.aspx", false);
-                if (Session["usuario"] != null)
-                {
-                    Users user = (Users)Session["usuario"];
-                    if (!string.IsNullOrEmpty(user.UrlImagenPerfil))
-                        imgAvatar.ImageUrl = $"~/Images/Perfiles/{user.UrlImagenPerfil}";
-                }
+            }
+            if (Session["usuario"] != null)
+            {
+                Users user = (Users)Session["usuario"];
+                if (!string.IsNullOrEmpty(user.UrlImagenPerfil))
+                    imgAvatar.ImageUrl = $"~/Images/Perfiles/{user.UrlImagenPerfil}";
+                if (Page is Admin || Page is FormularioArticulo)
+                    if (!Seguridad.esAdmin(Session["usuario"]))
+                        Response.Redirect("MiPerfil.aspx", false);
             }
         }
 
