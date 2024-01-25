@@ -21,5 +21,23 @@ namespace negocio
             Users usuario = user != null ? (Users)user : null;
             return usuario != null ? usuario.Admin : false;
         }
+        public static bool esFavorito(Users user, Articulos articulo)
+        {
+            try
+            {
+                FavoritosNegocio favoritosNegocio = new FavoritosNegocio();
+                List<Favoritos> listaFavoritos = favoritosNegocio.listarFavoritos(user);
+                foreach (Favoritos item in listaFavoritos)
+                {
+                    if (item.Articulo.Id == articulo.Id)
+                        return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

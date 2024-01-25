@@ -15,12 +15,21 @@ namespace web_articulos
     {
 
         /// <summary>
-        /// Control btnFavoritos.
+        /// Control btnAgregarFavorito.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFavoritos;
+        protected global::System.Web.UI.WebControls.Button btnAgregarFavorito;
+
+        /// <summary>
+        /// Control btnEliminarFavorito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminarFavorito;
     }
 }

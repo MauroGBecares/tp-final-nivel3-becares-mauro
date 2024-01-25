@@ -18,8 +18,25 @@
                         <p class="card-text"><b>Precio: $ <%: detalleArticulo.Precio %></b></p>
                     </div>
                     <div class="d-flex justify-content-center py-1 gap-2">
+                        <% if (Request.QueryString["page"] == "favoritos")
+                            { %>
+                        <a href="Favoritos.aspx" class="btn btn-primary">Regresar</a>
+                        <%}
+                            else
+                            {  %>
                         <a href="Default.aspx" class="btn btn-primary">Regresar</a>
-                        <asp:Button ID="btnFavoritos" runat="server" Text="Agregar a Favoritos" CssClass="btn btn-outline-primary" />
+                        <%} %>
+                        <% if (Session["usuario"] != null)
+                            { %>
+                        <%if (!esFavorito)
+                            { %>
+                        <asp:Button ID="btnAgregarFavorito" runat="server" Text="Agregar a Favoritos" CssClass="btn btn-outline-primary" OnClick="btnAgregarFavorito_Click" />
+                        <%}
+                            else
+                            { %>
+                        <asp:Button ID="btnEliminarFavorito" runat="server" Text="Eliminar de Favoritos" CssClass="btn btn-outline-danger" OnClick="btnEliminarFavorito_Click" />
+                        <%} %>
+                        <%} %>
                     </div>
                 </div>
             </div>

@@ -79,6 +79,8 @@
                         <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" Width="176px" OnClick="btnGuardar_Click" />
                     </div>
                     <div class="ms-auto">
+                        <% if (Request.QueryString["id"] != null)
+                            {%>
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                             <ContentTemplate>
                                 <div class="d-flex flex-column gap-2">
@@ -94,6 +96,7 @@
                                 </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
+                        <%} %>
                     </div>
                 </div>
             </div>
