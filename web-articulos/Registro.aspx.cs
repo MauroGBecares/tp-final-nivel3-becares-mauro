@@ -3,6 +3,7 @@ using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,6 +19,11 @@ namespace web_articulos
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+            if (Validacion.esVacio(txtEmail, txtNombre, txtPass, txtApellido))
+                return;
+            if (!Regex.IsMatch(txtEmail.Text, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+                return;
+
             UsersNegocio negocio = new UsersNegocio();
             Users user = new Users();
             try

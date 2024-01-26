@@ -104,6 +104,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\ValidarTexto.js" />
     <Content Include="svg-logo\logo-shopping.svg" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -182,6 +183,7 @@
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Validacion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPrincipal.Master" />

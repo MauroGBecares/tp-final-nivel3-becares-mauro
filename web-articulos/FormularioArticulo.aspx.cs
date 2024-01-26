@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace web_articulos
 {
@@ -30,12 +31,12 @@ namespace web_articulos
                     ddlMarca.DataBind();
 
                     ddlCategoria.DataSource = listaCategorias;
-                    ddlCategoria.DataValueField= "Id";
+                    ddlCategoria.DataValueField = "Id";
                     ddlCategoria.DataTextField = "Descripcion";
                     ddlCategoria.DataBind();
                 }
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : string.Empty;
-                if (!string.IsNullOrEmpty(id) && !IsPostBack) 
+                if (!string.IsNullOrEmpty(id) && !IsPostBack)
                 {
                     txtCodigo.Enabled = false;
                     ArticulosNegocio articulosNegocio = new ArticulosNegocio();
@@ -61,6 +62,12 @@ namespace web_articulos
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (Validacion.esVacio(txtCodigo, txtDescripcion, txtNombre, txtPrecio))
+                return;
+            if (!Regex.IsMatch(txtCodigo.Text, "^[A-Z]\\d+$"))
+                return;
+            if (!Regex.IsMatch(txtPrecio.Text, "^\\d+(\\,\\d{1,2})?$"))
+                return;
             try
             {
                 ArticulosNegocio articulosNegocio = new ArticulosNegocio();

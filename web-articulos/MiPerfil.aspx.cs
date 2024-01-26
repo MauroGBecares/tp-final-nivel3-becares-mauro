@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace web_articulos
 {
@@ -37,6 +38,11 @@ namespace web_articulos
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (Validacion.esVacio(txtEmail, txtApellido, txtNombre, txtImagen))
+                return;
+            if (!Regex.IsMatch(txtEmail.Text, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+                return;
+
             UsersNegocio negocio = new UsersNegocio();
             Users user = (Users)Session["usuario"];
 

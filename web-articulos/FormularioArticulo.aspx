@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPrincipal.Master" AutoEventWireup="true" CodeBehind="FormularioArticulo.aspx.cs" Inherits="web_articulos.FormularioArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="Scripts/ValidarTexto.js" defer></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager2" runat="server"></asp:ScriptManager>
@@ -23,11 +24,13 @@
             <div class="col-4">
                 <div class="mb-4">
                     <label for="txtCodigo" class="form-label">Código</label>
-                    <asp:TextBox ID="txtCodigo" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigo" ClientIDMode="Static" CssClass="form-control cajasTexto" runat="server"></asp:TextBox>
+                    <div id="mensajeCodigo" class="mensajesTextBox"></div>
                 </div>
                 <div class="mb-4">
                     <label for="txtNombre" class="form-label">Nombre</label>
-                    <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtNombre" ClientIDMode="Static" CssClass="form-control cajasTexto" runat="server"></asp:TextBox>
+                    <div class="mensajesTextBox"></div>
                 </div>
                 <div class="mb-4">
                     <label for="ddlMarca" class="form-label">Marca</label>
@@ -55,7 +58,8 @@
                     <label for="txtPrecio" class="form-label">Precio</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
-                        <asp:TextBox ID="txtPrecio" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPrecio" ClientIDMode="Static" CssClass="form-control cajasTexto" runat="server"></asp:TextBox>
+                        <div id="mensajePrecio" class="mensajesTextBox"></div>
                     </div>
                 </div>
             </div>
@@ -66,7 +70,8 @@
             <div class="col">
                 <div class="mb-4">
                     <label for="txtDescripcion" class="form-label">Descripcion</label>
-                    <asp:TextBox ID="txtDescripcion" TextMode="MultiLine" Rows="3" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtDescripcion" ClientIDMode="Static" TextMode="MultiLine" Rows="3" CssClass="form-control cajasTexto" runat="server"></asp:TextBox>
+                    <div class="mensajesTextBox"></div>
                 </div>
             </div>
             <div class="col-1"></div>
@@ -76,7 +81,7 @@
             <div class="col">
                 <div class="d-flex">
                     <div>
-                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" Width="176px" OnClick="btnGuardar_Click" />
+                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClientClick="return validar()" Width="176px" OnClick="btnGuardar_Click" />
                     </div>
                     <div class="ms-auto">
                         <% if (Request.QueryString["id"] != null)

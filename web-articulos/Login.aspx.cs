@@ -18,6 +18,8 @@ namespace web_articulos
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            if (Validacion.esVacio(txtEmail, txtPass))
+                return;
             UsersNegocio negocioUser = new UsersNegocio();
             Users user = new Users();
             try
