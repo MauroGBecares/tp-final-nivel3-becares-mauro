@@ -86,10 +86,10 @@
                     <div class="ms-auto">
                         <% if (Request.QueryString["id"] != null)
                             {%>
-                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <asp:UpdatePanel ID="UpdatePanelEliminar" runat="server">
                             <ContentTemplate>
                                 <div class="d-flex flex-column gap-2">
-                                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" Width="176px" />
+                                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" Width="176px" OnClientClick="cambiarCheckBox();" />
                                     <% if (ConfirmarEliminacion)
                                         { %>
                                     <div class="d-flex gap-1">

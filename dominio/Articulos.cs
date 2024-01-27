@@ -18,7 +18,19 @@ namespace dominio
         [DisplayName("Categoría")]
         public Categorias Categoria { get; set; }
         public Marcas Marca { get; set; }
-        public string UrlImagen { get; set; }
+        //public string UrlImagen { get; set; }
+        private string urlImagen { get; set; }
+        public string UrlImagen
+        {
+            get {
+                if (string.IsNullOrEmpty(urlImagen))
+                    return "https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png";
+                else
+                    return urlImagen; 
+            }
+            set { urlImagen = value;  }
+        }
+
         private decimal precio { get; set; }
         public decimal Precio
         {

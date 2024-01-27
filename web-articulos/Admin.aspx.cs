@@ -2,6 +2,7 @@
 using negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -21,7 +22,7 @@ namespace web_articulos
                     Session.Add("listaArticulos", articulosNegocio.listar());
                 }
                 dgvArticulos.DataSource = Session["listaArticulos"];
-                dgvArticulos.DataBind();    
+                dgvArticulos.DataBind();
             }
             catch (Exception ex)
             {
@@ -63,16 +64,27 @@ namespace web_articulos
 
         protected void btnBuscarAvanzado_Click(object sender, EventArgs e)
         {
+            if (Validacion.esVacio(ddlCampo, ddlCriterio, txtFiltroAvanzado))
+                return;
             try
             {
                 ArticulosNegocio articulosNegocio = new ArticulosNegocio();
                 dgvArticulos.DataSource = articulosNegocio.filtro(ddlCampo.Text, ddlCriterio.Text, txtFiltroAvanzado.Text);
                 dgvArticulos.DataBind();
+
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                Response.Redirect("Error.aspx", false);
+                if (ex is SqlException)
+                {
+                    dgvArticulos.DataSource = null;
+                    dgvArticulos.DataBind();
+                }
+                else
+                {
+                    Session.Add("error", ex);
+                    Response.Redirect("Error.aspx", false);
+                }
             }
         }
 

@@ -15,26 +15,34 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body onload="cambiarCheckBox()">
     <form id="form1" runat="server">
         <div class="container">
             <div class="row">
                 <nav class="navbar" style="background-color: #FFD812;">
                     <div class="container-fluid justify-content-center">
+                        <% if (!negocio.Seguridad.sessionActiva(Session["usuario"]))
+                            {  %>
+                        <a class="navbar-brand mx-auto" href="Default.aspx">
+                            <div class="logo">
+                                <img src="svg-logo/logo-shopping.svg" alt="Logo" width="40" height="34" class="d-inline-block align-text-top">
+                                ElectroShop
+                            </div>
+                        </a>
+                        <div class="mx-1">
+                            <div class="mx-1">
+                                <a href="Registro.aspx" class="btn btn-outline-secondary btn-sm">Registrarse</a>
+                                <a href="Login.aspx" class="btn btn-secondary btn-sm">Loguearse</a>
+                            </div>
+                        </div>
+                        <%}
+                            else
+                            {  %>
                         <a class="navbar-brand mx-auto" href="Default.aspx">
                             <img src="svg-logo/logo-shopping.svg" alt="Logo" width="40" height="34" class="d-inline-block align-text-top">
                             ElectroShop
                         </a>
                         <div class="mx-1">
-                            <% if (!negocio.Seguridad.sessionActiva(Session["usuario"]))
-                                {  %>
-                            <div class="mx-1">
-                                <a href="Registro.aspx" class="btn btn-outline-secondary btn-sm">Registrarse</a>
-                                <a href="Login.aspx" class="btn btn-secondary btn-sm">Loguearse</a>
-                            </div>
-                            <%}
-                                else
-                                {  %>
                             <div class="mx-1">
                                 <div class="dropdown">
                                     <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,8 +63,8 @@
                                     </ul>
                                 </div>
                             </div>
-                            <%} %>
                         </div>
+                        <%} %>
                     </div>
                 </nav>
             </div>
@@ -79,7 +87,7 @@
             </div>
         </div>
         <footer>
-            <h3>Hecho por Mauro Becares</h3>
+            <h3>Hecho por Mauro Bécares</h3>
         </footer>
     </form>
 </body>

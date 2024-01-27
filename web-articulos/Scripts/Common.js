@@ -1,5 +1,8 @@
 ﻿
 // CAMBIAR ESTILOS DE LOS CHECKBOX
-var listaCheckBox = document.querySelectorAll('input[type="checkbox"]')
+const listaCheckBox = document.querySelectorAll('input[type="checkbox"]')
 
-listaCheckBox.forEach(chk => { chk.classList.add("form-check-input") })
+
+function cambiarCheckBox() {
+    listaCheckBox.forEach(chk => { chk.classList.add("form-check-input") })
+}

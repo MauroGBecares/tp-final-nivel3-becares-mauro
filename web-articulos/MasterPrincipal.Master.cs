@@ -27,6 +27,8 @@ namespace web_articulos
                 if (Page is Admin || Page is FormularioArticulo)
                     if (!Seguridad.esAdmin(Session["usuario"]))
                         Response.Redirect("MiPerfil.aspx", false);
+                if (Page is Registro || Page is Login)
+                    Response.Redirect("MiPerfil.aspx", false);
             }
         }
 

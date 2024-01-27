@@ -63,7 +63,7 @@ namespace negocio
                 datos.setearParametros("@Descripcion", valor.Descripcion);
                 datos.setearParametros("@IdMarca", valor.Marca.Id);
                 datos.setearParametros("@IdCategoria", valor.Categoria.Id);
-                datos.setearParametros("@ImagenUrl", valor.UrlImagen);
+                datos.setearParametros("@ImagenUrl", valor.UrlImagen == "" ? "https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png" : valor.UrlImagen);
                 datos.setearParametros("@Precio", valor.Precio);
                 datos.ejecutarAccion();
             }
@@ -87,7 +87,7 @@ namespace negocio
                 datos.setearParametros("@Descripcion", valor.Descripcion);
                 datos.setearParametros("@IdMarca", valor.Marca.Id);
                 datos.setearParametros("@IdCategoria", valor.Categoria.Id);
-                datos.setearParametros("@ImagenUrl", valor.UrlImagen);
+                datos.setearParametros("@ImagenUrl", string.IsNullOrEmpty(valor.UrlImagen) ? "https://grupoact.com.ar/wp-content/uploads/2020/04/placeholder.png" : valor.UrlImagen);
                 datos.setearParametros("@Precio", valor.Precio);
                 datos.setearParametros("@Id", valor.Id);
                 datos.ejecutarAccion();

@@ -114,13 +114,13 @@ namespace web_articulos
         protected global::System.Web.UI.WebControls.Button btnGuardar;
 
         /// <summary>
-        /// Control UpdatePanel2.
+        /// Control UpdatePanelEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelEliminar;
 
         /// <summary>
         /// Control btnEliminar.

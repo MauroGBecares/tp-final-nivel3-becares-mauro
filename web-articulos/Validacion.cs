@@ -19,6 +19,13 @@ namespace web_articulos
                     else
                         return false;
                 }
+                if (caja is DropDownList ddl)
+                {
+                    if (string.IsNullOrEmpty(ddl.Text))
+                        return true;
+                    else
+                        return false;
+                }
             }
 
             return false;

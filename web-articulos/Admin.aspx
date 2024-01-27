@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPrincipal.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="web_articulos.Admin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="Scripts/ValidarTexto.js" defer></script>
+    <link href="Content/Admin.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="contenido py-3">
         <div class="container">
             <div class="row">
@@ -19,70 +20,73 @@
                         <label for="chkFiltroAvanzado" class="form-check-label">Activar Filtro Avanzado</label>
                         <asp:Button ID="btnLimpiarFiltro" runat="server" Text="Limpiar Filtro" CssClass="btn btn-outline-primary ms-auto" OnClick="btnLimpiarFiltro_Click" />
                     </div>
+                    <script src="Script/Common.js" defer></script>
                 </div>
             </div>
-            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                <ContentTemplate>
-                    <%if (chkFiltroAvanzado.Checked)
-                        { %>
-                    <div class="row">
-                        <div class="col-3">
-                            <div class="mb-3 d-flex">
-                                <label for="ddlCampo" class="my-1 mx-2">Campo</label>
-                                <asp:DropDownList ID="ddlCampo" CssClass="form-select" runat="server" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" AutoPostBack="true">
-                                    <asp:ListItem Text="Código" />
-                                    <asp:ListItem Text="Nombre" />
-                                    <asp:ListItem Text="Descripción" />
-                                    <asp:ListItem Text="Categoría" />
-                                    <asp:ListItem Text="Marca" />
-                                    <asp:ListItem Text="Precio" />
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="mb-3 d-flex">
-                                <label for="ddlCriterio" class="my-1 mx-2">Criterio</label>
-                                <asp:DropDownList ID="ddlCriterio" runat="server" CssClass="form-select"></asp:DropDownList>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="mb-3 d-flex">
-                                <label for="txtFiltroAvanzado" class="my-1 mx-2">Filtro</label>
-                                <asp:TextBox ID="txtFiltroAvanzado" CssClass="form-control" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="mb-3 d-flex">
-                                <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" OnClick="btnBuscarAvanzado_Click" CssClass="btn btn-outline-primary" />
-                            </div>
+            <%if (chkFiltroAvanzado.Checked)
+                { %>
+            <div class="row">
+                <div class="col-3">
+                    <div class="mb-3">
+                        <label for="ddlCampo" class="my-1 mx-2">Campo</label>
+                        <asp:DropDownList ID="ddlCampo" CssClass="form-select" runat="server" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged" AutoPostBack="true">
+                            <asp:ListItem Text="Código" />
+                            <asp:ListItem Text="Nombre" />
+                            <asp:ListItem Text="Descripción" />
+                            <asp:ListItem Text="Categoría" />
+                            <asp:ListItem Text="Marca" />
+                            <asp:ListItem Text="Precio" />
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="mb-3">
+                        <label for="ddlCriterio" class="my-1 mx-2">Criterio</label>
+                        <div>
+                            <asp:DropDownList ID="ddlCriterio" ClientIDMode="Static" runat="server" CssClass="form-select cajasTexto"></asp:DropDownList>
+                            <div class="mensajesTextBox"></div>
                         </div>
                     </div>
-                    <%} %>
-                    <div class="row">
-                        <div class="col-12">
-                            <asp:GridView ID="dgvArticulos" CssClass="table table-striped" AutoGenerateColumns="false" runat="server"
-                                OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging"
-                                AllowPaging="True" PageSize="5" DataKeyNames="Id">
-                                <Columns>
-                                    <asp:BoundField HeaderText="Código" DataField="Codigo" />
-                                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
-                                    <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
-                                    <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
-                                    <asp:BoundField HeaderText="Precio" DataField="Precio" />
-                                    <asp:TemplateField>
-                                        <ItemTemplate>
-                                            <asp:LinkButton runat="server" CommandName="Select">
+                </div>
+                <div class="col-3">
+                    <div class="mb-3">
+                        <label for="txtFiltroAvanzado" class="my-1 mx-2">Filtro</label>
+                        <div>
+                            <asp:TextBox ID="txtFiltroAvanzado" ClientIDMode="Static" CssClass="form-control cajasTexto" runat="server"></asp:TextBox>
+                            <div class="mensajesTextBox"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 button">
+                    <div class="mb-3">
+                        <asp:Button ID="btnBuscarAvanzado" runat="server" Text="Buscar" OnClientClick="return validar()" OnClick="btnBuscarAvanzado_Click" CssClass="btn btn-outline-primary" />
+                    </div>
+                </div>
+            </div>
+            <%} %>
+            <div class="row">
+                <div class="col-12">
+                    <asp:GridView ID="dgvArticulos" CssClass="table table-striped" AutoGenerateColumns="false" runat="server"
+                        OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged" OnPageIndexChanging="dgvArticulos_PageIndexChanging"
+                        AllowPaging="True" PageSize="5" DataKeyNames="Id">
+                        <Columns>
+                            <asp:BoundField HeaderText="Código" DataField="Codigo" />
+                            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                            <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
+                            <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
+                            <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
+                            <asp:BoundField HeaderText="Precio" DataField="Precio" />
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton runat="server" CommandName="Select">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                            </asp:LinkButton>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-2">
                     <a href="FormularioArticulo.aspx" class="btn btn-primary">Agregar</a>
